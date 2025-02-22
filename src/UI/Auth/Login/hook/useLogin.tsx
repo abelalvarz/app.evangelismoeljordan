@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ChangeEvent } from 'react'
 import { FormEvent } from 'react'
-import { useToast } from '../../../App/hooks/useToast'
-import { useAuth } from '../../../App/hooks/useAuth'
+import { useToast } from '../../../App/hooks'
+import { useAuth } from '../../../App/hooks'
 import { UserService } from '../../../../Core/Adapters/UserService'
 import { AuthUserRequest } from '../../../../Core/Users/application/dtos/request/AuthUserRequest'
-import { useLoading } from '../../../App/hooks/useLoading'
+import { useLoading } from '../../../App/hooks'
 
 const initialState:AuthUserRequest = {
     email: '',

@@ -3,11 +3,11 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FamilyGroupService } from '../../../../Core/Adapters/FamilyGroupService';
 import { UserService } from '../../../../Core/Adapters/UserService';
-import { useToast } from '../../../App/hooks/useToast';
+import { useToast } from '../../../App/hooks';
 import { FamilyGroup } from '../../../../Core/FamilyGroups/domain/model/FamilyGroup';
 import { DropdownChangeEvent } from 'primereact/dropdown';
 import { UserRequest } from '../../../../Core/Users/application/dtos/request/UserRequest';
-import { useLoading } from '../../../App/hooks/useLoading';
+import { useLoading } from '../../../App/hooks';
 
 const initialState = {
     name: '',

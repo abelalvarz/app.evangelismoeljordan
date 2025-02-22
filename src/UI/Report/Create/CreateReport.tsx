@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom'
 import { ReportDetail } from './components/ReportDetail';
 import { Calendar } from 'primereact/calendar';
 import { Report } from '../../../Core/Report/domain/model/Report';
-import { useToast } from '../../App/hooks/useToast';
-import { useAuth } from '../../App/hooks/useAuth';
+import { useToast } from '../../App/hooks';
+import { useAuth } from '../../App/hooks';
 import { ReportService } from '../../../Core/Adapters/ReportService';
 import { CreateReportRequest } from '../../../Core/Report/application/dtos/CreateReportRequest';
-import { useLoading } from '../../App/hooks/useLoading';
+import { useLoading } from '../../App/hooks';
 
 const initialState: Report = {
     id: null,

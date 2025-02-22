@@ -1,7 +1,7 @@
 import { PrivateRoutes, PublicRoutes } from "../config/RoutesConfig"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import { Navigation } from "./Navigation"
-import { useAuth } from "../hooks/useAuth"
+import { useAuth } from "../hooks"
 
 export const Router = () => {
     const auth = useAuth()

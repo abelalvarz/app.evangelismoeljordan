@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { InputNumber, InputNumberChangeEvent } from 'primereact/inputnumber';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Report } from '../../../../Core/Report/domain/model/Report';
-import { useToast } from '../../../App/hooks/useToast';
+import { useToast } from '../../../App/hooks';
 import { CustomStepper, CustomStepperPanel } from '../../../App/ui-components/CustomStepper';
 
 interface Props {

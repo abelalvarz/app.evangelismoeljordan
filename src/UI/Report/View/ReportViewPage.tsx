@@ -3,8 +3,8 @@ import { ReportService } from '../../../Core/Adapters/ReportService'
 import { Report } from '../../../Core/Report/domain/model/Report';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
-import { useAuth } from '../../App/hooks/useAuth';
-import { useLoading } from '../../App/hooks/useLoading';
+import { useAuth } from '../../App/hooks';
+import { useLoading } from '../../App/hooks';
 import { InputText } from 'primereact/inputtext';
 
 export const ReportViewPage = () => {
