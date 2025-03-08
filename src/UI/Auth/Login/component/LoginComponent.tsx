@@ -13,7 +13,7 @@ interface Props {
 export const LoginComponent = ({ user, handleLogin, onChange }: Props) => {
     return (
         <div className='w-full h-full flex flex-col justify-between'>
-            <div className='h-[30vh] bg-[url(../../../../public/cruz-background.jpg)] bg-center bg-cover '>
+            <div className='h-[30vh] bg-[url(/cruz-background.jpg)] bg-center bg-cover '>
                 <div className='w-full h-full bg-[rgba(0,0,0,0.2)] px-10 flex flex-col items-center justify-center'>
 
                     <div className='w-full text-center'>
