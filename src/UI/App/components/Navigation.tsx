@@ -7,7 +7,6 @@ export const Navigation = () => {
     const location = useLocation();
 
     const auth = useAuth()
-    console.log(auth?.loggedUser.isLogged)
 
     if (!auth?.loggedUser.isLogged) {
         return <></>

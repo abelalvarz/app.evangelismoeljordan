@@ -25,7 +25,6 @@ export class FirebaseAuthService implements IAuthUserService {
             console.log(createdUser)
             return { id: createdUser.user.uid, token: "" }
         } catch (error) {
-            console.log(error)
             return null;
         }
     }

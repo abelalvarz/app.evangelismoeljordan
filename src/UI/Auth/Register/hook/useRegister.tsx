@@ -66,6 +66,7 @@ export const useRegister = () => {
     }
 
     const registerUser = async () => {
+        console.log("User to save: ",user)
         loading?.start()
         const response = await userService.create.execute(user)
 

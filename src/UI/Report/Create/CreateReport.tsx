@@ -62,11 +62,11 @@ export const CreateReport = () => {
     }
 
     const saveReport = async () => {
-        loading?.start()
 
         if (!auth?.loggedUser.familyGroup)
             return toast?.show('error', 'Error', 'No se puede procesar la gestion en este momento')
-
+        
+        loading?.start()
         const data = { ...report, familyGroup: auth?.loggedUser.familyGroup || null, totalAttendance: calculateTotal() }
         const response = await reportService.create.execute(data);
         loading?.stop()
@@ -108,6 +108,7 @@ export const CreateReport = () => {
                         onChange={(e) => handleOnchange({ [e.target.name]: e.target.value })}
                         placeholder='Seleccionar Fecha'
                         maxDate={new Date()}
+                        locale='es'
                         className='bg-gray-50 rounded-md w-full' />
                 </div>
                 <ReportDetail

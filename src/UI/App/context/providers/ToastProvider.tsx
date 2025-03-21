@@ -15,7 +15,7 @@ export const ToastProvider = ({ children }: ToastProps) => {
 
     return (
         <ToastContext value={{ show }}>
-            <Toast ref={toastRef} position="top-center" />
+            <Toast className="text-center flex items-center justify-center" ref={toastRef} position="top-center" />
             {children}
         </ToastContext>
     )

@@ -22,7 +22,7 @@ export class CreateUseCase {
 
         const createdCredential = await this.authService.signUp({ email: request.email, password: request.password })
         if (!createdCredential?.id)
-            return new Response(false, "Verifique su email o intente mas tarde", null)
+            return new Response(false, "El email ingresado ya existe", null)
 
 
         const user = new User(

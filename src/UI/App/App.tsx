@@ -5,7 +5,7 @@ import { LoadingProvider } from "./context/providers/LoadingProvider"
 import { Router } from './components/Router';
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import 'primeicons/primeicons.css';
-
+import './utils/locale'
 export const App = () => {
 
 	return (

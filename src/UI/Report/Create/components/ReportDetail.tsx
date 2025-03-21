@@ -148,7 +148,7 @@ export const ReportDetail = ({ handleOnchange, report, onSubmit, calculateTotal 
                     </div>
                 </CustomStepperPanel>
                 <CustomStepperPanel
-                    onClick={() => handleActiveOnchange(3)}
+                    onClick={() => handleActiveOnchange(2)}
                     title="Ofrenda"
                     active={active === 2}>
                     <div className='px-0 pr-4 pb-5'>

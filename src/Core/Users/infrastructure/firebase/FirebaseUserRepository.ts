@@ -25,7 +25,7 @@ export class FirebaseUserRepository implements UserRepository {
                     color: familyGroup.color,
                     teacher: familyGroup.teacher,
                     anfitrion: familyGroup.anfitrion,
-                    leaders: familyGroup.leaders,
+                    leaders: familyGroup.leaders || "",
                     meetingTime: familyGroup.meetingTime,
                     meetingDay: familyGroup.meetingDay
                 }, rol: user.rol, status: user.status
@@ -73,6 +73,11 @@ export class FirebaseUserRepository implements UserRepository {
                 limit(1))
             const docs = await getDocs(querySnap)
             const doc = docs.docs[0]
+
+            console.log("Doc: ",doc)
+            if(!doc){
+                throw Error
+            }
             return new User(
                 doc.id,
                 doc.data()?.name,
@@ -83,7 +88,6 @@ export class FirebaseUserRepository implements UserRepository {
             )
 
         } catch (error) {
-            console.log(error)
             return null
         }
     }

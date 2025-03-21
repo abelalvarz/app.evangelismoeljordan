@@ -5,7 +5,6 @@ import { useAuth } from "../hooks"
 
 export const Router = () => {
     const auth = useAuth()
-    console.log(auth?.loggedUser.isLogged)
     return (
         <BrowserRouter>
             <Navigation />
