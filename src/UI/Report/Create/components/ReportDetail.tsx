@@ -50,12 +50,13 @@ export const ReportDetail = ({ handleOnchange, report, onSubmit, calculateTotal 
 
 
     return (
-        <div className='w-full'>
+        <div className='w-full overflow-y-scroll'>
             <CustomStepper>
                 <small className='ml-3 mt-5 text-red-500'>Los campos marcados con (*) son requeridos.</small>
                 <CustomStepperPanel
                     title="Asistencia"
                     onClick={() => handleActiveOnchange(0)}
+                    handleNext={active === 0 ? handleNext :null}
                     active={active === 0}>
 
                     <div className='px-0 pr-4'>
@@ -114,6 +115,7 @@ export const ReportDetail = ({ handleOnchange, report, onSubmit, calculateTotal 
                 <CustomStepperPanel
                     onClick={() => handleActiveOnchange(1)}
                     title="Evangelizacion"
+                    handleNext={active === 1 ? handleNext : null}
                     active={active === 1}>
                     <div className='px-0 pr-4'>
                         <div className='w-full flex justify-between items-center mt-2'>
@@ -150,6 +152,7 @@ export const ReportDetail = ({ handleOnchange, report, onSubmit, calculateTotal 
                 <CustomStepperPanel
                     onClick={() => handleActiveOnchange(2)}
                     title="Ofrenda"
+                    handleNext={ null}
                     active={active === 2}>
                     <div className='px-0 pr-4 pb-5'>
                         <div className='w-full flex justify-between items-center mt-2'>
@@ -157,7 +160,10 @@ export const ReportDetail = ({ handleOnchange, report, onSubmit, calculateTotal 
                             <InputNumber
                                 value={report.offering}
                                 onChange={(e: InputNumberChangeEvent) => handleOnchange({ "offering": e.value })}
-                                inputClassName='w-20 mr-5 text-center' />
+                                mode="currency" 
+                                currency="GTQ" 
+                                locale="es-GT" 
+                                inputClassName='w-24 mr-5 text-center' />
                         </div>
                         <div className='w-full flex flex-col justify-between  mt-2'>
                             <label htmlFor="">Comentarios</label>
@@ -169,7 +175,7 @@ export const ReportDetail = ({ handleOnchange, report, onSubmit, calculateTotal 
                     </div>
                 </CustomStepperPanel>
             </CustomStepper>
-            <div className="w-full h-50 flex pt-4 justify-content-between items-center">
+            <div className="w-full h-20 flex pt-4 justify-content-between items-center">
                 <Button
                     className='w-full ml-4' label={`${active === 2 ? 'Enviar' : "Siguiente"}`} icon={`pi ${active === 2 ? "pi-send" : "pi-arrow-right"}`} iconPos="right" onClick={active === 2 ? onSubmit : handleNext} />
             </div>

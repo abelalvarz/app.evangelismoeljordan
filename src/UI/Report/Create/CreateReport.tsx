@@ -62,20 +62,23 @@ export const CreateReport = () => {
     }
 
     const saveReport = async () => {
-
         if (!auth?.loggedUser.familyGroup)
             return toast?.show('error', 'Error', 'No se puede procesar la gestion en este momento')
-        
         loading?.start()
-        const data = { ...report, familyGroup: auth?.loggedUser.familyGroup || null, totalAttendance: calculateTotal() }
-        const response = await reportService.create.execute(data);
-        loading?.stop()
-
-        if (!response.success)
-            return toast?.show('error', 'Error', response.message)
-
-        toast?.show('success', 'Exito', 'Reporte enviado exitosamente');
-        navigate("/dashboard")
+        try{    
+            const data = { ...report, familyGroup: auth?.loggedUser.familyGroup || null, totalAttendance: calculateTotal() }
+            const response = await reportService.create.execute(data);
+            loading?.stop()
+    
+            if (!response.success)
+                return toast?.show('error', 'Error', response.message)
+    
+            toast?.show('success', 'Exito', 'Reporte enviado exitosamente');
+            navigate("/dashboard")
+        }catch(error){
+            toast?.show('error', 'Error', "No se pudo enviar el reporte, intente mas tarde")
+            loading?.stop()
+        }
     }
 
     const calculateTotal = () => {
@@ -99,7 +102,7 @@ export const CreateReport = () => {
                     <CgClose size={25} color='red' />
                 </button>
             </div>
-            <div className='w-full p-5 '>
+            <div className='w-full p-5 overflow-y-scroll'>
                 <div>
                     <label htmlFor="">Fecha de Reunion</label>
                     <Calendar

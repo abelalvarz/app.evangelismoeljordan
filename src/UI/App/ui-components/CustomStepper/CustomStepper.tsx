@@ -8,7 +8,7 @@ interface ICustomerStepper {
 
 export const CustomStepper = ({ children }: ICustomerStepper) => {
     return (
-        <div className='w-full bg-gray-50 mt-5 rounded-md'>
+        <div className='w-full bg-gray-50 mt-5 rounded-md overflow-y-scroll'>
             {React.Children.map(children, (child, index) => {
                 if (React.isValidElement<ICustomStepperPanel>(child)) {
                     return React.cloneElement(child, { index: index });

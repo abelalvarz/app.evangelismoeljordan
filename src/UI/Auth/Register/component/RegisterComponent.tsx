@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { FamilyGroup } from '../../../../Core/FamilyGroups/domain/model/FamilyGroup';
 import { ChangeEvent, FormEvent } from 'react';
 import { UserRequest } from '../../../../Core/Users/application/dtos/request/UserRequest';
+import { Password } from 'primereact/password';
 
 interface Props {
     user: UserRequest;
@@ -16,7 +17,6 @@ interface Props {
 const roles = [
     { label: "Maestro", value: "teacher" },
     { label: "Secretario/a", value: "secretary" },
-    { label: "Tesorero/a", value: "treasurer" },
 ]
 
 export const RegisterComponent = ({ user, handleRegister, onChange, groups }: Props) => {
@@ -51,20 +51,6 @@ export const RegisterComponent = ({ user, handleRegister, onChange, groups }: Pr
                             placeholder='Nombre' />
                     </div>
                     <div className='flex flex-col mt-2'>
-                        <InputText
-                            value={user.email}
-                            name='email'
-                            onChange={onChange}
-                            placeholder='Email' />
-                    </div>
-                    <div className='flex flex-col mt-2'>
-                        <InputText
-                            value={user.password}
-                            name='password'
-                            onChange={onChange}
-                            placeholder='Contraseña' />
-                    </div>
-                    <div className='flex flex-col mt-2'>
                         <Dropdown
                             name='familyGroup'
                             value={user.familyGroup}
@@ -86,7 +72,23 @@ export const RegisterComponent = ({ user, handleRegister, onChange, groups }: Pr
                         />
                     </div>
                     <div className='flex flex-col mt-2'>
-                        <Button label='Ingresar' />
+                        <InputText
+                            value={user.email}
+                            type='email'
+                            name='email'
+                            onChange={onChange}
+                            placeholder='Email' />
+                    </div>
+                    <div className='flex flex-col mt-2 w-full'>
+                        <Password
+                            name='password'
+                            inputClassName='w-full'
+                            value={user.password}
+                            onChange={onChange}
+                            placeholder='Contraseña' />
+                    </div>
+                    <div className='flex flex-col mt-2'>
+                        <Button label='Registrarme' />
                     </div>
                 </form>
 

@@ -3,11 +3,12 @@ import { InputText } from "primereact/inputtext"
 import { Link } from "react-router-dom"
 import { AuthUserRequest } from "../../../../Core/Users/application/dtos/request/AuthUserRequest";
 import { ChangeEvent, FormEvent } from "react";
+import { Password } from "primereact/password";
 
 interface Props {
     user: AuthUserRequest,
-    handleLogin: (e:FormEvent<HTMLFormElement>) => void;
-    onChange: (e:ChangeEvent<HTMLInputElement>) => void
+    handleLogin: (e: FormEvent<HTMLFormElement>) => void;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
 export const LoginComponent = ({ user, handleLogin, onChange }: Props) => {
@@ -36,12 +37,14 @@ export const LoginComponent = ({ user, handleLogin, onChange }: Props) => {
                         <InputText
                             value={user.email}
                             name='email'
+                            type="email"
                             onChange={onChange}
                             placeholder='Email' />
                     </div>
                     <div className='flex flex-col mt-2'>
-                        <InputText
+                        <Password
                             name='password'
+                            inputClassName='w-full'
                             value={user.password}
                             onChange={onChange}
                             placeholder='Contraseña' />
