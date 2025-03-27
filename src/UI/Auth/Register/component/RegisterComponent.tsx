@@ -75,6 +75,7 @@ export const RegisterComponent = ({ user, handleRegister, onChange, groups }: Pr
                             inputClassName='w-full'
                             value={user.password}
                             onChange={onChange}
+                            promptLabel='Ingresar contraseña'
                             placeholder='Contraseña' />
                     </div>
                     <div className='flex flex-col mt-2'>
