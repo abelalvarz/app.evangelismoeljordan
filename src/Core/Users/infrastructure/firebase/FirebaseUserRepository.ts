@@ -68,7 +68,7 @@ export class FirebaseUserRepository implements UserRepository {
             const querySnap = query(collection(
                 firebase, USER_COLLECTION),
                 where("rol", "==", rol),
-                where("familyGroup", "==", familyGroup),
+                where("familyGroup.name", "==", familyGroup),
                 where("status", "==", 'ACTIVE'),
                 limit(1))
             const docs = await getDocs(querySnap)

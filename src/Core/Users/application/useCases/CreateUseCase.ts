@@ -18,7 +18,7 @@ export class CreateUseCase {
 
         const alreadyExistRol = await this.repository.getByRolAndFamilyGroup(request.rol, request.familyGroup?.name);
         if (alreadyExistRol)
-            return new Response(false, "El grupo seleccionado ya usuario con el cargo selecionado", null)
+            return new Response(false, "El grupo ya tiene el cargo seleccionado asignado", null)
 
         const createdCredential = await this.authService.signUp({ email: request.email, password: request.password })
         if (!createdCredential?.id)
