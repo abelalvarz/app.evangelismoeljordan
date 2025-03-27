@@ -74,7 +74,6 @@ export class FirebaseUserRepository implements UserRepository {
             const docs = await getDocs(querySnap)
             const doc = docs.docs[0]
 
-            console.log("Doc: ",doc)
             if(!doc){
                 throw Error
             }

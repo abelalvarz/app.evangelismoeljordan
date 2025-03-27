@@ -8,18 +8,19 @@ export const DashboardPage = () => {
   const service = ReportService;
   const loggedUser = useAuth();
   const [isReportPending, setIsReportPending] = useState(false)
+
   useEffect(() => {
     const fetchCurrentReport = async () => {
       const familyGroupId = loggedUser?.loggedUser.familyGroup.id
       if (familyGroupId) {
         const response = await service.getExistReportForDate.execute(new Date(), familyGroupId)
-        console.log(response)
         if (response.success)
           setIsReportPending(response.data)
       }
     }
     fetchCurrentReport()
   }, [])
+  
   return (
     <div className='w-full h-[100vh] flex flex-col '>
       <div className="p-5">

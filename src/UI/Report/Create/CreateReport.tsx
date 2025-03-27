@@ -65,17 +65,17 @@ export const CreateReport = () => {
         if (!auth?.loggedUser.familyGroup)
             return toast?.show('error', 'Error', 'No se puede procesar la gestion en este momento')
         loading?.start()
-        try{    
+        try {
             const data = { ...report, familyGroup: auth?.loggedUser.familyGroup || null, totalAttendance: calculateTotal() }
             const response = await reportService.create.execute(data);
             loading?.stop()
-    
+
             if (!response.success)
                 return toast?.show('error', 'Error', response.message)
-    
+
             toast?.show('success', 'Exito', 'Reporte enviado exitosamente');
             navigate("/dashboard")
-        }catch(error){
+        } catch (error) {
             toast?.show('error', 'Error', "No se pudo enviar el reporte, intente mas tarde")
             loading?.stop()
         }
@@ -91,6 +91,8 @@ export const CreateReport = () => {
         const total = activeMembers + noActiveMembers + activeMembersChildren + noActiveMembersChildren + visitorChildren + visitors;
         return total
     }
+    const minDate = new Date()
+    minDate.setDate(minDate.getDate() - 7)
 
     return (
         <div className={`w-full h-[100vh] bg-gray-100 z-1 fixed duration-500 ${visible ? 'mt-0' : 'mt-[300%]'}`}>
@@ -110,6 +112,7 @@ export const CreateReport = () => {
                         value={report.meetingDate}
                         onChange={(e) => handleOnchange({ [e.target.name]: e.target.value })}
                         placeholder='Seleccionar Fecha'
+                        minDate={minDate}
                         maxDate={new Date()}
                         locale='es'
                         className='bg-gray-50 rounded-md w-full' />

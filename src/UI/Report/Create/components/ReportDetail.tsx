@@ -170,7 +170,7 @@ export const ReportDetail = ({ handleOnchange, report, onSubmit, calculateTotal 
                             <InputTextarea
                                 value={report.comments}
                                 onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleOnchange({ "comments": e.target.value })}
-                                className='w-full mr-5 text-center' rows={3} cols={20} />
+                                className='w-full mr-5' rows={3} cols={20} />
                         </div>
                     </div>
                 </CustomStepperPanel>

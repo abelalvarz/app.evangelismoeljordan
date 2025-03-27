@@ -14,22 +14,11 @@ interface Props {
 export const LoginComponent = ({ user, handleLogin, onChange }: Props) => {
     return (
         <div className='w-full h-full flex flex-col justify-between'>
-            <div className='h-[30vh] bg-[url(/cruz-background.jpg)] bg-center bg-cover '>
-                <div className='w-full h-full bg-[rgba(0,0,0,0.2)] px-10 flex flex-col items-center justify-center'>
-
-                    <div className='w-full text-center'>
-                        <h1 className='text-2xl font-bold border-2 border-white text-white px-[4%] py-2 '>
-                            Evangelismo
-                        </h1>
-                        <p className='font-bold text-white'>
-                            El Jordan
-                        </p>
-                    </div>
-                </div>
+            <div className='h-[30vh] bg-[url(/background.png)] bg-center bg-cover '>
             </div>
             <div className='px-10 h-full'>
                 <div className='w-full h-full flex flex-col my-5'>
-                    <h1 className='text-3xl font-bold'> Login</h1>
+                    <h1 className='text-3xl font-bold'>Ingreso</h1>
                     <p className='text-gray-600'>Ingresa tu email y contraseña para acceder</p>
                 </div>
                 <form action="post" onSubmit={handleLogin}>

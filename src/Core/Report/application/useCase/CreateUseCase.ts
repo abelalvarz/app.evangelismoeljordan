@@ -14,9 +14,18 @@ export class CreateUseCase {
         if (!request.familyGroup?.id)
             return new Response(false, "No se pudo enviar el reporte", null)
 
+        const startDate = getStartDate(request.meetingDate)
+        const endDate = getEndDate(request.meetingDate)
+        
+        const currentDay = new Date()
+        currentDay.setHours(23,59,59,59)
+
+        if(currentDay > endDate || request.meetingDate.getDay()===3)
+            return new Response(false, "El tiempo para enviar el reporte ya vencio, comunicate con evangelismo", null)
+
         const existingReports = await this.repository.getAllBetweenDatesAndGroupId(
-            getLastFriday(request.meetingDate),
-            getNextFriday(request.meetingDate), 
+            startDate,
+            endDate, 
             request?.familyGroup?.id
         )
 
@@ -31,19 +40,21 @@ export class CreateUseCase {
     }
 }
 
-const getLastFriday = (date: Date) => {
-    const faltan = 5 - date.getDay();
-    const lastSaturday = new Date(date)
-    lastSaturday.setDate(date.getDate() + faltan - 7)
-    
-    return lastSaturday;
+const getStartDate = (date: Date) => {
+    const pendingDays = 4 - date.getDay();
+    const lastDay = new Date(date)
+    const daysDiff = pendingDays === 0 ? 0 :pendingDays - 7
+    lastDay.setDate(date.getDate() + daysDiff)   
+    lastDay.setHours(0,0,0,0) 
+    return lastDay;
 }
 
-const getNextFriday = (date: Date) => {
-    let faltan = 5 - date.getDay();
-    let nextSaturday = new Date(date)
-    nextSaturday.setDate(date.getDate() + faltan)
-    console.log(nextSaturday)
+const getEndDate = (date: Date) => {
+    let pendingDays = 2 - date.getDay();
+    let endDateTime = new Date(date)
+    const timeDiff = pendingDays < 0 ? pendingDays + 7 : pendingDays
+    endDateTime.setDate(date.getDate() + timeDiff)
+    endDateTime.setHours(23,59,59,59) 
 
-    return nextSaturday;
+    return endDateTime;
 }

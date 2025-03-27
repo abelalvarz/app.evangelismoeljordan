@@ -61,14 +61,12 @@ export class FirebaseReportRepository implements ReportRepository {
         return Promise.resolve(convertedDocs)
     }
     async getAllBetweenDatesAndGroupId(startDate: Date,endDate:Date, familyGroupId: string): Promise<Report[]> {
-        console.log(startDate)
-        console.log(endDate)
         const startTimeStamp = Timestamp.fromDate(startDate)
         const endTimeStamp = Timestamp.fromDate(endDate)
         const querySnap = query(collection(firebase, COLLECTION_NAME),
             where("familyGroup.id", "==", familyGroupId),
-            where("meetingDate", ">=", startTimeStamp))
-            where("meetingDate", "<=", endTimeStamp)
+            where("meetingDate", ">=", startTimeStamp),
+            where("meetingDate", "<=", endTimeStamp))
 
         const docs = await getDocs(querySnap)
         const convertedDocs = docs.docs.map((doc) => {
