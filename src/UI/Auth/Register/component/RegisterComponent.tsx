@@ -84,7 +84,7 @@ export const RegisterComponent = ({ user, handleRegister, onChange, groups }: Pr
                 </form>
 
             </div>
-            <div className='absolute bottom-20 w-full '>
+            <div className='mt-5 w-full '>
                 <p className='text-center'>Ya tienes cuenta? <Link className='underline text-blue-400' to="/login">Iniciar Sesión</Link></p>
             </div>
         </div>
