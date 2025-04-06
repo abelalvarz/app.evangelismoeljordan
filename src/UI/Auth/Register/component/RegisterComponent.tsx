@@ -78,7 +78,6 @@ export const RegisterComponent = ({ user, handleRegister, onChange, groups }: Pr
                             weakLabel='Debil'
                             mediumLabel='Medio Fuerte'
                             strongLabel='Fuerte'
-                            toggleMask
                             promptLabel='Ingresar contraseña'
                             placeholder='Contraseña' />
                     </div>
