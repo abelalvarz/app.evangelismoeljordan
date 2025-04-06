@@ -21,7 +21,6 @@ const roles = [
 
 export const RegisterComponent = ({ user, handleRegister, onChange, groups }: Props) => {
 
-
     return (
         <div className='w-full h-full flex flex-col justify-between'>
             <div className='h-[30vh] bg-[url(/background.png)] bg-center bg-cover '>

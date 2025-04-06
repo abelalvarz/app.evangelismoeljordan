@@ -91,6 +91,7 @@ export const CreateReport = () => {
         const total = activeMembers + noActiveMembers + activeMembersChildren + noActiveMembersChildren + visitorChildren + visitors;
         return total
     }
+    
     const minDate = new Date()
     minDate.setDate(minDate.getDate() - 7)
 

@@ -76,6 +76,7 @@ export const useRegister = () => {
         toast?.show('success', 'Exito', 'Usuario registrado exitosamente')
         navigate("/login")
     }
+    
     return {
         user,
         handleOnChange,

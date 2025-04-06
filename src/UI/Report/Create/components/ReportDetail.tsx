@@ -12,6 +12,7 @@ interface Props {
     onSubmit: VoidFunction,
     calculateTotal: () => number;
 }
+
 export const ReportDetail = ({ handleOnchange, report, onSubmit, calculateTotal }: Props) => {
     const toast = useToast()
     const [active, setActive] = useState(0);
@@ -33,6 +34,7 @@ export const ReportDetail = ({ handleOnchange, report, onSubmit, calculateTotal 
         }
         setActive(index)
     }
+
     const validateField = () => {
         if (active === 0 && report.activeMembers === null) {
             setInvalid("activeMembers")
@@ -46,8 +48,6 @@ export const ReportDetail = ({ handleOnchange, report, onSubmit, calculateTotal 
         }
         return true;
     }
-
-
 
     return (
         <div className='w-full overflow-y-scroll'>
