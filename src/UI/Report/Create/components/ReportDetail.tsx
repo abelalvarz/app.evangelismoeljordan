@@ -34,12 +34,12 @@ export const ReportDetail = ({ handleOnchange, report, onSubmit, calculateTotal 
         setActive(index)
     }
     const validateField = () => {
-        if (active === 0 && !report.activeMembers) {
+        if (active === 0 && report.activeMembers === null) {
             setInvalid("activeMembers")
             toast?.show("info", "Error", "El campo Miembros Activos es requerido");
             return false
         }
-        if (active === 1 && !report.vigilAttendance) {
+        if (active === 1 && report.vigilAttendance === null) {
             setInvalid("vigilAttendance")
             toast?.show("info", "Error", "El campo Asistencia a Vigilia es requerido");
             return false

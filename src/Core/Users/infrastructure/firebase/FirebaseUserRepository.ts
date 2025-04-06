@@ -28,7 +28,7 @@ export class FirebaseUserRepository implements UserRepository {
                     leaders: familyGroup.leaders || "",
                     meetingTime: familyGroup.meetingTime,
                     meetingDay: familyGroup.meetingDay
-                }, rol: user.rol, status: user.status
+                }, role: user.role, status: user.status
             })
             return Promise.resolve(true)
         } catch (error) {
@@ -54,7 +54,7 @@ export class FirebaseUserRepository implements UserRepository {
                 user.data()?.name,
                 user.data()?.email,
                 user.data()?.familyGroup,
-                user.data()?.rol,
+                user.data()?.role,
                 user.data()?.status
             ))
         } catch (error) {
@@ -63,11 +63,11 @@ export class FirebaseUserRepository implements UserRepository {
         }
     }
 
-    async getByRolAndFamilyGroup(rol: string, familyGroup: string): Promise<User | null> {
+    async getByRoleAndFamilyGroup(role: string, familyGroup: string): Promise<User | null> {
         try {
             const querySnap = query(collection(
                 firebase, USER_COLLECTION),
-                where("rol", "==", rol),
+                where("role", "==", role),
                 where("familyGroup.name", "==", familyGroup),
                 where("status", "==", 'ACTIVE'),
                 limit(1))
@@ -82,7 +82,7 @@ export class FirebaseUserRepository implements UserRepository {
                 doc.data()?.name,
                 doc.data()?.email,
                 doc.data()?.familyGroup,
-                doc.data()?.rol,
+                doc.data()?.role,
                 doc.data()?.status
             )
 

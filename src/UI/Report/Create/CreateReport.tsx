@@ -53,9 +53,9 @@ export const CreateReport = () => {
     const handleOnSubmit = () => {
         if (!report.meetingDate)
             return toast?.show('warn', 'Informacion', 'Se debe de seleccionar una fecha de reunion')
-        if (!report.activeMembers)
+        if (report.activeMembers === null)
             return toast?.show('warn', 'Informacion', 'Miembros activos es requerido')
-        if (!report.offering)
+        if (report.offering === null)
             return toast?.show('warn', 'Informacion', 'El campo Ofrenda es requerido')
 
         saveReport()

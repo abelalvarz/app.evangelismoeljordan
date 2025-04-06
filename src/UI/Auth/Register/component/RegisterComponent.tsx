@@ -52,8 +52,8 @@ export const RegisterComponent = ({ user, handleRegister, onChange, groups }: Pr
                     </div>
                     <div className='flex flex-col mt-2'>
                         <Dropdown
-                            name='rol'
-                            value={user.rol}
+                            name='role'
+                            value={user.role}
                             placeholder='Seleccionar Cargo'
                             options={roles}
                             optionLabel='label'
@@ -75,6 +75,10 @@ export const RegisterComponent = ({ user, handleRegister, onChange, groups }: Pr
                             inputClassName='w-full'
                             value={user.password}
                             onChange={onChange}
+                            weakLabel='Debil'
+                            mediumLabel='Medio Fuerte'
+                            strongLabel='Fuerte'
+                            toggleMask
                             promptLabel='Ingresar contraseña'
                             placeholder='Contraseña' />
                     </div>

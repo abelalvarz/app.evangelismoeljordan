@@ -27,7 +27,7 @@ export class LoginUseCase {
             loggedUser.token,
             user.name,
             user.email,
-            user.rol,
+            user.role,
             user.familyGroup
         ))
     }

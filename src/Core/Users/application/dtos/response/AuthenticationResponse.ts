@@ -5,7 +5,7 @@ export class AuthenticationResponse {
         readonly token: string,
         readonly name: string,
         readonly email: string,
-        readonly rol: string,
+        readonly role: string[],
         readonly familyGroup: FamilyGroup,
     ) { }
 }

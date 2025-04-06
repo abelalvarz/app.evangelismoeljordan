@@ -36,6 +36,7 @@ export const LoginComponent = ({ user, handleLogin, onChange }: Props) => {
                             inputClassName='w-full'
                             value={user.password}
                             onChange={onChange}
+                            toggleMask
                             feedback={false} tabIndex={1}
                             placeholder='Contraseña' />
                     </div>

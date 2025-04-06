@@ -24,7 +24,8 @@ export class FirebaseReportRepository implements ReportRepository {
                 vigilAttendance: report.vigilAttendance,
                 visitedHomes: report.visitedHomes,
                 offering: report.offering,
-                comments: report.comments
+                comments: report.comments,
+                createdFrom: "APP"
             })
             return Promise.resolve(true)
 
@@ -55,7 +56,8 @@ export class FirebaseReportRepository implements ReportRepository {
                 data?.vigilAttendance,
                 data?.visitedHomes,
                 data?.offering,
-                data?.comments
+                data?.comments,
+                data?.createdFrom
             )
         })
         return Promise.resolve(convertedDocs)
@@ -87,7 +89,8 @@ export class FirebaseReportRepository implements ReportRepository {
                 data?.vigilAttendance,
                 data?.visitedHomes,
                 data?.offering,
-                data?.comments
+                data?.comments,
+                data?.createdFrom
             )
         })
         return Promise.resolve(convertedDocs)

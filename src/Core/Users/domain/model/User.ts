@@ -16,7 +16,7 @@ export class User {
         readonly name: string,
         readonly email: string,
         readonly familyGroup: FamilyGroup,
-        readonly rol: string,
+        readonly role: string[],
         readonly status: UserStatus
     ){}
 }

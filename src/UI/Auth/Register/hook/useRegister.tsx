@@ -14,7 +14,7 @@ const initialState = {
     email: '',
     password: '',
     familyGroup: null,
-    rol: ''
+    role: ''
 }
 
 export const useRegister = () => {
@@ -53,7 +53,7 @@ export const useRegister = () => {
         e.preventDefault()
         if(user.name === '')
             return toast?.show('warn', 'Alerta','Debes de ingresar tu Nombre')
-        if(user.rol === '')
+        if(user.role === '')
             return toast?.show('warn', 'Alerta','Debes de seleccionar tu cargo')
         if(!user.familyGroup)
             return toast?.show('warn', 'Alerta','Debes de seleccionar Grupo Familiar')

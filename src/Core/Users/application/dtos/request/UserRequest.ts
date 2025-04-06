@@ -5,5 +5,5 @@ export interface UserRequest {
     email: string;
     password: string;
     familyGroup: FamilyGroup | null,
-    rol: string
+    role: string
 }
