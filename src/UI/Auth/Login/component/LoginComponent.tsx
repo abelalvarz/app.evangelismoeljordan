@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { AuthUserRequest } from "../../../../Core/Users/application/dtos/request/AuthUserRequest";
 import { FormEvent } from "react";
 import { Password } from "primereact/password";
-import { Checkbox } from "primereact/checkbox";
+import { InputSwitch } from "primereact/inputswitch";
 
 interface Props {
     user: AuthUserRequest,
@@ -42,8 +42,8 @@ export const LoginComponent = ({ user, handleLogin, onChange }: Props) => {
                             placeholder='Contraseña' />
                     </div>
                     <div className="w-full flex justify-between mt-2 mb-5">
-                        <span className="text-xm"><Checkbox onChange={(e: any) => onChange({ 'keepLogged': e.checked })} checked={user.keepLogged}></Checkbox> Recordar</span>
-                        <Link className="text-blue-400 text-xm" to={"/forgot-password"}>Olvide mi Contraseña</Link>
+                        <span className="text-[12px] flex items-center"><InputSwitch className="mr-1" onChange={(e: any) => onChange({ 'keepLogged': e.value })} checked={user.keepLogged}></InputSwitch>Recordarme</span>
+                        {/* <Link className="text-blue-400 text-xm" to={"/forgot-password"}>Olvide mi Contraseña</Link> */}
                     </div>
                     <div className='flex flex-col mt-2'>
                         <Button label='Ingresar' />
