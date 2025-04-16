@@ -9,8 +9,9 @@ import { useAuth } from '../../App/hooks';
 import { ReportService } from '../../../Core/Adapters/ReportService';
 import { CreateReportRequest } from '../../../Core/Report/application/dtos/CreateReportRequest';
 import { useLoading } from '../../App/hooks';
+import { getStartDate } from '../../../utils/util.IntervalTimeGenerator';
 
-const initialState: Report = {
+const initialState: CreateReportRequest = {
     id: null,
     familyGroup: null,
     meetingDate: new Date(),
@@ -26,7 +27,8 @@ const initialState: Report = {
     visitedHomes: null,
     vigilAttendance: null,
     offering: null,
-    comments: ""
+    comments: "",
+    createdBy: ""
 }
 
 export const CreateReport = () => {
@@ -35,7 +37,7 @@ export const CreateReport = () => {
     const toast = useToast()
     const loading = useLoading()
     const navigate = useNavigate();
-    const reportService = ReportService;
+    const reportService = ReportService; 
 
     const [visible, setVisible] = useState(false)
     const [report, setReport] = useState<Report | CreateReportRequest>(initialState)
@@ -66,7 +68,7 @@ export const CreateReport = () => {
             return toast?.show('error', 'Error', 'No se puede procesar la gestion en este momento')
         loading?.start()
         try {
-            const data = { ...report, familyGroup: auth?.loggedUser.familyGroup || null, totalAttendance: calculateTotal() }
+            const data = { ...report, familyGroup: auth?.loggedUser.familyGroup || null, totalAttendance: calculateTotal(), createdBy: auth?.loggedUser.name }
             const response = await reportService.create.execute(data);
             loading?.stop()
 
@@ -92,8 +94,7 @@ export const CreateReport = () => {
         return total
     }
     
-    const minDate = new Date()
-    minDate.setDate(minDate.getDate() - 7)
+
 
     return (
         <div className={`w-full h-[100vh] bg-gray-100 z-1 fixed duration-500 ${visible ? 'mt-0' : 'mt-[300%]'}`}>
@@ -113,8 +114,9 @@ export const CreateReport = () => {
                         value={report.meetingDate}
                         onChange={(e) => handleOnchange({ [e.target.name]: e.target.value })}
                         placeholder='Seleccionar Fecha'
-                        minDate={minDate}
+                        minDate={getStartDate(0)}
                         maxDate={new Date()}
+                        dateFormat='dd/mm/yy'
                         locale='es'
                         className='bg-gray-50 rounded-md w-full' />
                 </div>

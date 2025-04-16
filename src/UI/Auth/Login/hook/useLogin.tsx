@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ChangeEvent } from 'react'
 import { FormEvent } from 'react'
 import { useToast } from '../../../App/hooks'
 import { useAuth } from '../../../App/hooks'
@@ -10,7 +9,8 @@ import { useLoading } from '../../../App/hooks'
 
 const initialState: AuthUserRequest = {
     email: '',
-    password: ''
+    password: '',
+    keepLogged: false
 }
 
 export const useLogin = () => {
@@ -45,6 +45,7 @@ export const useLogin = () => {
                 return toast?.show('error', 'Error', response.message)
 
             auth?.login({ email: response.data?.email, isLogged: true, name: response.data?.name, token: response.data?.token, familyGroup: response.data?.familyGroup })
+
             toast?.show('success', 'Exito', 'Inicio de sesión exitoso')
             navigate("/dashboard")
         } catch (error) {
@@ -54,13 +55,9 @@ export const useLogin = () => {
         }
     }
 
-    const handleOnchange = (e: ChangeEvent<HTMLInputElement>) => {
-        setUser({
-            ...user,
-            [e.target.name]: e.target.value
-        })
-    }
-    
+    const handleOnchange = (value: any) => setUser((prev) => ({ ...prev, ...value }));
+
+
     return {
         user,
         handleLogin,

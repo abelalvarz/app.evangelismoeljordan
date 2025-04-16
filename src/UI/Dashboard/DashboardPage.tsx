@@ -11,9 +11,9 @@ export const DashboardPage = () => {
 
     useEffect(() => {
         const fetchCurrentReport = async () => {
-            const familyGroupId = loggedUser?.loggedUser.familyGroup.id
+            const familyGroupId = loggedUser?.loggedUser.familyGroup?.id
             if (familyGroupId) {
-                const response = await service.getExistReportForDate.execute(new Date(), familyGroupId)
+                const response = await service.getExistReportForDate.execute(familyGroupId)
                 if (response.success)
                     setIsReportPending(response.data)
             }
@@ -24,8 +24,8 @@ export const DashboardPage = () => {
     return (
         <div className='w-full h-[100vh] flex flex-col '>
             <div className="p-5">
-                <h1 className='text-4xl font-bold text-gray-500'>Evangelismo</h1>
-                <h2 className="text-gray-500">El Jordan</h2>
+                <h1 className='text-2xl font-bold text-gray-500'>Evangelismo</h1>
+                <h2 className="text-gray-500 text-sm">El Jordan</h2>
             </div>
             <div className='w-full h-full flex flex-col justify-center items-center'>
                 {
@@ -41,7 +41,6 @@ export const DashboardPage = () => {
                         </div>
                     )
                 }
-
 
             </div>
         </div>

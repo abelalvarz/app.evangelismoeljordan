@@ -1,4 +1,5 @@
 export interface AuthUserRequest {
     email: string;
-    password: string
+    password: string;
+    keepLogged: boolean
 }

@@ -1,3 +1,4 @@
+import { getFinalDate, getStartDate } from "../../../../utils/util.IntervalTimeGenerator";
 import { Response } from "../../../Config/Response";
 import { ReportRepository } from "../../domain/repository/ReportRepository";
 import { CreateReportRequest } from "../dtos/CreateReportRequest";
@@ -14,8 +15,8 @@ export class CreateUseCase {
         if (!request.familyGroup?.id)
             return new Response(false, "No se pudo enviar el reporte", null)
 
-        const startDate = getStartDate(request.meetingDate)
-        const endDate = getEndDate(request.meetingDate)
+        const startDate = getStartDate(0)
+        const endDate = getFinalDate(0)
         
         const currentDay = new Date()
         currentDay.setHours(23,59,59,59)
@@ -38,23 +39,4 @@ export class CreateUseCase {
 
         return new Response(true, "Success Operation", null)
     }
-}
-
-const getStartDate = (date: Date) => {
-    const pendingDays = 4 - date.getDay();
-    const lastDay = new Date(date)
-    const daysDiff = pendingDays === 0 ? 0 :pendingDays - 7
-    lastDay.setDate(date.getDate() + daysDiff)   
-    lastDay.setHours(0,0,0,0) 
-    return lastDay;
-}
-
-const getEndDate = (date: Date) => {
-    let pendingDays = 2 - date.getDay();
-    let endDateTime = new Date(date)
-    const timeDiff = pendingDays < 0 ? pendingDays + 7 : pendingDays
-    endDateTime.setDate(date.getDate() + timeDiff)
-    endDateTime.setHours(23,59,59,59) 
-
-    return endDateTime;
 }

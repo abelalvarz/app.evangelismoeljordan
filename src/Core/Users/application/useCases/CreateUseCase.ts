@@ -20,7 +20,12 @@ export class CreateUseCase {
         if (alreadyExistRole)
             return new Response(false, "El grupo ya tiene el cargo seleccionado asignado", null)
 
-        const createdCredential = await this.authService.signUp({ email: request.email, password: request.password })
+        const createdCredential = await this.authService.signUp({
+            email: request.email, 
+            password: request.password,
+            keepLogged: false
+        })
+        
         if (!createdCredential?.id)
             return new Response(false, "El email ingresado ya existe", null)
 

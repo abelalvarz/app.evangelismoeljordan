@@ -16,5 +16,6 @@ export interface CreateReportRequest {
     visitedHomes: number | null,
     vigilAttendance: number | null,
     offering: number | null,
-    comments: string
+    comments: string,
+    createdBy: string
 }

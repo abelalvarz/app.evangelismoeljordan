@@ -2,7 +2,7 @@ import { FamilyGroup } from "../types/FamilyGroup";
 
 export class Report {
     constructor(
-        readonly id:string | null | undefined,
+        readonly id: string | null | undefined,
         readonly familyGroup: FamilyGroup | null,
         readonly meetingDate: Date,
         readonly activeMembers: number | null,
@@ -18,8 +18,10 @@ export class Report {
         readonly visitedHomes: number | null,
         readonly offering: number | null,
         readonly comments: string,
-        readonly createdFrom?: string | null | undefined
-    ){
+        readonly createdBy: string,
+        readonly createdAt?: Date,
+        readonly createdFrom?: string | null | undefined,
+    ) {
         this.offering = this.offering !== null ? Number(this.offering.toFixed(2)) : null;
     }
 }

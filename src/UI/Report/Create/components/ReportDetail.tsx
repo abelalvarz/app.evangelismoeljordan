@@ -2,12 +2,12 @@ import { Button } from 'primereact/button';
 import { useState } from 'react';
 import { InputNumber, InputNumberChangeEvent } from 'primereact/inputnumber';
 import { InputTextarea } from 'primereact/inputtextarea';
-import { Report } from '../../../../Core/Report/domain/model/Report';
 import { useToast } from '../../../App/hooks';
 import { CustomStepper, CustomStepperPanel } from '../../../App/ui-components/CustomStepper';
+import { CreateReportRequest } from '../../../../Core/Report/application/dtos/CreateReportRequest';
 
 interface Props {
-    report: Report;
+    report: CreateReportRequest;
     handleOnchange: (value: object) => void;
     onSubmit: VoidFunction,
     calculateTotal: () => number;

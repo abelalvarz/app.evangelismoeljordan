@@ -2,13 +2,14 @@ import { Button } from "primereact/button"
 import { InputText } from "primereact/inputtext"
 import { Link } from "react-router-dom"
 import { AuthUserRequest } from "../../../../Core/Users/application/dtos/request/AuthUserRequest";
-import { ChangeEvent, FormEvent } from "react";
+import { FormEvent } from "react";
 import { Password } from "primereact/password";
+import { Checkbox } from "primereact/checkbox";
 
 interface Props {
     user: AuthUserRequest,
     handleLogin: (e: FormEvent<HTMLFormElement>) => void;
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void
+    onChange: (e: any) => void
 }
 
 export const LoginComponent = ({ user, handleLogin, onChange }: Props) => {
@@ -27,7 +28,7 @@ export const LoginComponent = ({ user, handleLogin, onChange }: Props) => {
                             value={user.email}
                             name='email'
                             type="email"
-                            onChange={onChange}
+                            onChange={(e: any) => onChange({ [e.target.name]: e.target.value })}
                             placeholder='Email' />
                     </div>
                     <div className='flex flex-col mt-2'>
@@ -35,20 +36,24 @@ export const LoginComponent = ({ user, handleLogin, onChange }: Props) => {
                             name='password'
                             inputClassName='w-full'
                             value={user.password}
-                            onChange={onChange}
-                            feedback={false} 
+                            onChange={(e: any) => onChange({ [e.target.name]: e.target.value })}
+                            feedback={false}
                             tabIndex={1}
                             placeholder='Contraseña' />
+                    </div>
+                    <div className="w-full flex justify-between mt-2 mb-5">
+                        <span className="text-xm"><Checkbox onChange={(e: any) => onChange({ 'keepLogged': e.checked })} checked={user.keepLogged}></Checkbox> Recordar</span>
+                        <Link className="text-blue-400 text-xm" to={"/forgot-password"}>Olvide mi Contraseña</Link>
                     </div>
                     <div className='flex flex-col mt-2'>
                         <Button label='Ingresar' />
                     </div>
                 </form>
 
-            </div>
+            </div >
             <div className='absolute bottom-20 w-full '>
                 <p className='text-center'>No tiene cuenta? <Link className='underline text-blue-400' to="/registro">Registrarme</Link></p>
             </div>
-        </div>
+        </div >
     )
 }

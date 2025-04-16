@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { browserLocalPersistence, browserSessionPersistence, createUserWithEmailAndPassword, setPersistence, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "../../../Config/FirebaseConfiguration";
 import { AuthUserRequest } from "../../application/dtos/request/AuthUserRequest";
 import { AuthUserService } from "../../application/dtos/response/AuthUserResponse";
@@ -10,6 +10,9 @@ export class FirebaseAuthService implements IAuthUserService {
 
     async login(user: AuthUserRequest): Promise<AuthUserService | null> {
         try {
+            const persistance = user.keepLogged ? browserLocalPersistence : browserSessionPersistence
+            await setPersistence(auth, persistance)
+            
             const loggedUser = await signInWithEmailAndPassword(auth, user.email, user.password);
             const token = await loggedUser.user.getIdToken()
             return { id: loggedUser.user.uid, token: token }

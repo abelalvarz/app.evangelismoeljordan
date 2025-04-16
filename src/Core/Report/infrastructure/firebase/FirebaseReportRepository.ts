@@ -25,7 +25,9 @@ export class FirebaseReportRepository implements ReportRepository {
                 visitedHomes: report.visitedHomes,
                 offering: report.offering,
                 comments: report.comments,
-                createdFrom: "APP"
+                createdBy: report.createdBy,
+                createdAt: new Date(),
+                createdFrom: "APP",
             })
             return Promise.resolve(true)
 
@@ -57,12 +59,15 @@ export class FirebaseReportRepository implements ReportRepository {
                 data?.visitedHomes,
                 data?.offering,
                 data?.comments,
+                data?.createdBy,
+                data?.createdAt,
                 data?.createdFrom
             )
         })
         return Promise.resolve(convertedDocs)
     }
-    async getAllBetweenDatesAndGroupId(startDate: Date,endDate:Date, familyGroupId: string): Promise<Report[]> {
+    
+    async getAllBetweenDatesAndGroupId(startDate: Date, endDate: Date, familyGroupId: string): Promise<Report[]> {
         const startTimeStamp = Timestamp.fromDate(startDate)
         const endTimeStamp = Timestamp.fromDate(endDate)
         const querySnap = query(collection(firebase, COLLECTION_NAME),
@@ -90,6 +95,8 @@ export class FirebaseReportRepository implements ReportRepository {
                 data?.visitedHomes,
                 data?.offering,
                 data?.comments,
+                data?.createdBy,
+                data?.createdAt,
                 data?.createdFrom
             )
         })
