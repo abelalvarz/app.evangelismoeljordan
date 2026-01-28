@@ -15,7 +15,7 @@ export class FirebaseAuthService implements IAuthUserService {
             
             const loggedUser = await signInWithEmailAndPassword(auth, user.email, user.password);
             const token = await loggedUser.user.getIdToken()
-            return { id: loggedUser.user.uid, token: token }
+            return { id: loggedUser.user.uid, token: token, email: loggedUser.user.email! }
         } catch (error) {
             console.log(error)
             throw error;
@@ -26,7 +26,7 @@ export class FirebaseAuthService implements IAuthUserService {
         try {
             const createdUser = await createUserWithEmailAndPassword(auth, user.email, user.password);
             console.log(createdUser)
-            return { id: createdUser.user.uid, token: "" }
+            return { id: createdUser.user.uid, token: "", email: createdUser.user.email! }
         } catch (error) {
             return null;
         }

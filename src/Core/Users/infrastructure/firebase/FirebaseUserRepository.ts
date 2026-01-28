@@ -6,6 +6,10 @@ const firebase = getFirestore();
 const USER_COLLECTION = "Users";
 
 export class FirebaseUserRepository implements UserRepository {
+    findByEmail(email: string): Promise<User | null> {
+
+        throw new Error("Method not implemented." +email);
+    }
 
     async create(user: User): Promise<boolean> {
 
@@ -87,6 +91,7 @@ export class FirebaseUserRepository implements UserRepository {
             )
 
         } catch (error) {
+            console.log(error)
             return null
         }
     }

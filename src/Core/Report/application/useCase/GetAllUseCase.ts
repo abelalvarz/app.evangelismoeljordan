@@ -5,9 +5,9 @@ import { ReportRepository } from "../../domain/repository/ReportRepository"
 export class GetAllUseCase {
     constructor(private readonly repository: ReportRepository) { }
 
-    async execute(familyGroupId: string): Promise<Response<Report[]>> {
+    async execute(): Promise<Response<Report[]>> {
 
-        const data = await this.repository.getAllByFamilyGroup(familyGroupId)
+        const data = await this.repository.getAllByFamilyGroupUser()
 
         return new Response(true, "Success Operation", data)
     }

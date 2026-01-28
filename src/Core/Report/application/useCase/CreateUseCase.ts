@@ -12,9 +12,6 @@ export class CreateUseCase {
         if (request.meetingDate > new Date())
             return new Response(false, "La fecha del reporte no puede ser mayor a la actual", null)
 
-        if (!request.familyGroup?.id)
-            return new Response(false, "No se pudo enviar el reporte", null)
-
         const startDate = getStartDate(0)
         const endDate = getFinalDate(0)
         
@@ -24,10 +21,9 @@ export class CreateUseCase {
         if(currentDay > endDate || request.meetingDate.getDay()===3)
             return new Response(false, "El tiempo para enviar el reporte ya vencio, comunicate con evangelismo", null)
 
-        const existingReports = await this.repository.getAllBetweenDatesAndGroupId(
+        const existingReports = await this.repository.getWeeklyReportIfExists(
             startDate,
-            endDate, 
-            request?.familyGroup?.id
+            endDate
         )
 
         if (existingReports.length > 0)

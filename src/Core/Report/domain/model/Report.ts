@@ -22,6 +22,6 @@ export class Report {
         readonly createdAt?: Date,
         readonly createdFrom?: string | null | undefined,
     ) {
-        this.offering = this.offering !== null ? Number(this.offering.toFixed(2)) : null;
+        // this.offering = this.offering !== null ? Number(this.offering.toFixed(2)) : null;
     }
 }

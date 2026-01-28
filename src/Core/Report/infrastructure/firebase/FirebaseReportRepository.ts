@@ -5,6 +5,15 @@ import { ReportRepository } from "../../domain/repository/ReportRepository";
 const firebase = getFirestore();
 const COLLECTION_NAME = "Reports";
 export class FirebaseReportRepository implements ReportRepository {
+    getAllByFamilyGroupUser(): Promise<Report[]> {
+        throw new Error("Method not implemented.");
+    }
+    getWeeklyReportIfExists(start: Date, endDate: Date): Promise<Report[]> {
+        throw new Error("Method not implemented."+start+endDate);
+    }
+    getOneById(id: string): Promise<Report | null> {
+        throw new Error("Method not implemented."+id);
+    }
 
     async create(report: Report): Promise<boolean> {
         try {

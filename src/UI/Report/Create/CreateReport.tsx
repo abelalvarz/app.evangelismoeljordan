@@ -64,8 +64,9 @@ export const CreateReport = () => {
     }
 
     const saveReport = async () => {
-        if (!auth?.loggedUser.familyGroup)
+        if (!auth?.loggedUser.token)
             return toast?.show('error', 'Error', 'No se puede procesar la gestion en este momento')
+
         loading?.start()
         try {
             const data = { ...report, familyGroup: auth?.loggedUser.familyGroup || null, totalAttendance: calculateTotal(), createdBy: auth?.loggedUser.name }
@@ -78,6 +79,7 @@ export const CreateReport = () => {
             toast?.show('success', 'Exito', 'Reporte enviado exitosamente');
             navigate("/dashboard")
         } catch (error) {
+            console.error(error);
             toast?.show('error', 'Error', "No se pudo enviar el reporte, intente mas tarde")
             loading?.stop()
         }

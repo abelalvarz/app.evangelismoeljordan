@@ -1,11 +1,14 @@
 import { CreateUseCase } from "../Report/application/useCase/CreateUseCase";
 import { GetAllUseCase } from "../Report/application/useCase/GetAllUseCase";
 import { GetBetweenDateUseCase } from "../Report/application/useCase/GetBetweenDatesUseCase";
-import { FirebaseReportRepository } from "../Report/infrastructure/firebase/FirebaseReportRepository";
+import { GetOneByIdUseCase } from "../Report/application/useCase/GetOneByIdUseCase";
+import { ApiReportRepository } from "../Report/infrastructure/api/ApiReportRepository";
 
-const repository = new FirebaseReportRepository()
+const apiRepository = new ApiReportRepository();
+
 export const ReportService = {
-    create: new CreateUseCase(repository),
-    getAll: new GetAllUseCase(repository),
-    getExistReportForDate: new GetBetweenDateUseCase(repository)
+    create: new CreateUseCase(apiRepository),
+    getAll: new GetAllUseCase(apiRepository),
+    validateIsCurrentReportSent: new GetBetweenDateUseCase(apiRepository),
+    getOneById: new GetOneByIdUseCase(apiRepository)
 }

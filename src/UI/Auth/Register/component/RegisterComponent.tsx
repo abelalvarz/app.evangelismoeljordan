@@ -15,8 +15,8 @@ interface Props {
 }
 
 const roles = [
-    { label: "Maestro", value: "teacher" },
-    { label: "Secretario/a", value: "secretary" },
+    { label: "Maestro", value: "TEACHER" },
+    { label: "Secretario/a", value: "SECRETARY" },
 ]
 
 export const RegisterComponent = ({ user, handleRegister, onChange, groups }: Props) => {
