@@ -5,9 +5,9 @@ interface Prosp {
 }
 export const AttendanceSection = ({ data }: Prosp) => {
     return (
-        <div className="w-full box-border  mt-3">
+        <div className="w-full  box-border  mt-3">
             <h1 className="text-lg  font-bold bg-green-300 rounded-sm pl-2">Asistencia</h1>
-            <div className="w-full  rounded-md">
+            <div className="w-full rounded-md">
                 <div className="report-detail-line">
                     <label>Miembros activos</label>
                     <label>{data.activeMembers}</label>
@@ -32,8 +32,8 @@ export const AttendanceSection = ({ data }: Prosp) => {
                     <label>Amigos visitantes</label>
                     <label>{data.visitors}</label>
                 </div>
-                <div className="w-full flex justify-between mt-[1px] border-t-gray-200 border-t-[1px] py-2 px-2">
-                    <label className="font-bold">Total asistentes</label>
+                <div className="w-full flex justify-between mt-[1px] border-t-gray-200 border-t-[1px] py-2 ">
+                    <label className="font-bold">Total asistencia</label>
                     <label className="font-bold">{data.totalAttendance}</label>
                 </div>
             </div>

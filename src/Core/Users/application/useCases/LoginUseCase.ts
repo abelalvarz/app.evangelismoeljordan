@@ -19,7 +19,7 @@ export class LoginUseCase {
             return new Response(false, "Email o Contraseña incorrectos.", null)
 
         console.log("validating user with eamil");
-        const user = await this.repository.findByEmail(loggedUser.email);
+        const user = await this.repository.getUserProfile(loggedUser.token);
         if (!user)
             return new Response(false, "Usuario invalido", null)
 

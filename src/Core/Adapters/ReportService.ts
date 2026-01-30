@@ -2,7 +2,7 @@ import { CreateUseCase } from "../Report/application/useCase/CreateUseCase";
 import { GetAllUseCase } from "../Report/application/useCase/GetAllUseCase";
 import { GetBetweenDateUseCase } from "../Report/application/useCase/GetBetweenDatesUseCase";
 import { GetOneByIdUseCase } from "../Report/application/useCase/GetOneByIdUseCase";
-import { ApiReportRepository } from "../Report/infrastructure/api/ApiReportRepository";
+import { ApiReportRepository } from "../Report/infrastructure/api/repository/ApiReportRepository";
 
 const apiRepository = new ApiReportRepository();
 

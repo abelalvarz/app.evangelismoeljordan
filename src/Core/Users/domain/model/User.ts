@@ -10,6 +10,7 @@ type FamilyGroup = {
     meetingDay: string,
     meetingTime: string
 }
+
 export class User {
     constructor(
         readonly id: string | null,
@@ -19,4 +20,19 @@ export class User {
         readonly role: string[],
         readonly status: UserStatus
     ){}
+}
+export class CreateUserRequest extends User {
+    password: string;
+    constructor(
+        id: string | null,
+        name: string,
+        email: string,
+        familyGroup: FamilyGroup,
+        role: string[],
+        status: UserStatus,
+        password: string
+    ) {
+        super(id, name, email, familyGroup, role, status);
+        this.password = password;
+    }   
 }

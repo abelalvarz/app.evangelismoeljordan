@@ -14,7 +14,7 @@ export const OfferingSection = ({ data }: Props) => {
                     <label>Ofrenda</label>
                     <label>{data.offering}</label>
                 </div>
-                <div className="w-full flex flex-col justify-between  py-2 px-2">
+                <div className="w-full flex flex-col justify-between  py-2 ">
                     <label>Comentarios</label>
                     <small>{data.comments}</small>
                 </div>

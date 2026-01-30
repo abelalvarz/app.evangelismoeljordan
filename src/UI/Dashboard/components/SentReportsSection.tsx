@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Report } from '../../../Core/Report/domain/model/Report'
+import { format } from 'date-fns';
+import { es } from 'date-fns/locale';
 
 export const SentReportsSection = ({ sentReports }: { sentReports: Report[] }) => {
     const navigate = useNavigate();
@@ -38,7 +40,7 @@ export const SentReportsSection = ({ sentReports }: { sentReports: Report[] }) =
                             <div className="flex-1 text-left space-y-2">
                                 <div className="flex items-center justify-between">
                                     <h3 className="text-lg font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">
-                                        {new Date(report.meetingDate).toLocaleDateString()}
+                                        Reunión {report?.meetingDate && format(report?.meetingDate, " d 'de' MMMM yyyy", { locale: es })}
                                     </h3>
                                 </div>
 
@@ -52,7 +54,7 @@ export const SentReportsSection = ({ sentReports }: { sentReports: Report[] }) =
                                     <div className="flex items-center gap-1.5">
                                         <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
                                         <span className="font-bold text-slate-700">{report.visitedHomes}</span>
-                                        <span className="text-slate-500">visitados</span>
+                                        <span className="text-slate-500">hogares visitados</span>
                                     </div>
                                 </div>
                             </div>

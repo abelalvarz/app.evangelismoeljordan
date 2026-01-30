@@ -6,6 +6,9 @@ const firebase = getFirestore();
 const USER_COLLECTION = "Users";
 
 export class FirebaseUserRepository implements UserRepository {
+    getUserProfile(token: string): Promise<User | null> {
+        throw new Error("Method not implemented." +token);
+    }
     findByEmail(email: string): Promise<User | null> {
 
         throw new Error("Method not implemented." +email);

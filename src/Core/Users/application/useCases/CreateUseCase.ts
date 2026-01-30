@@ -1,5 +1,5 @@
 import { Response } from "../../../Config/Response";
-import { User } from "../../domain/model/User";
+import { CreateUserRequest } from "../../domain/model/User";
 import { UserRepository } from "../../domain/repository/UserRepository";
 import { UserRequest } from "../dtos/request/UserRequest";
 import { IAuthUserService } from "../interface/IAuthUserService";
@@ -32,13 +32,14 @@ export class CreateUseCase {
         const roles = []
         roles.push(request.role)
         
-        const user = new User(
+        const user = new CreateUserRequest(
             createdCredential.id,
             request.name,
             request.email,
             request.familyGroup,
             roles,
-            'ACTIVE'
+            'ACTIVE',
+            request.password
         )
 
         const createdUser = await this.repository.create(user);

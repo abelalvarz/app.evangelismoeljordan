@@ -55,8 +55,8 @@ export const ReportDetailComponent = ({ data }: Props) => {
     }
 
     return (
-        <div className="flex flex-col w-full h-full gap-10 p-5 box-border ">
-            <div className="flex  flex-col er  w-full">
+        <div className="flex flex-col w-full h-full gap-2 p-5 box-border br-d ">
+            <div className="flex  flex-col w-full">
                 <h1 className="text-4xl font-bold max-md:text-2xl max-md:mt-5">{reportDetail?.familyGroup?.name}</h1>
                 <h2>Guatemala, {reportDetail?.meetingDate && format(reportDetail?.meetingDate, "EEEE d 'de' MMMM yyyy", { locale: es })}</h2>
             </div>

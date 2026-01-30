@@ -1,5 +1,5 @@
-import { Report } from "../../domain/model/Report";
-import { FamilyGroup } from "../../domain/types/FamilyGroup";
+import { Report } from "../../../domain/model/Report";
+import { FamilyGroup } from "../../../domain/types/FamilyGroup";
 
 export class ReportDataMapper {
 
@@ -7,7 +7,7 @@ export class ReportDataMapper {
         return {
             meetingDate: report.meetingDate,
             hostName: report.familyGroup?.anfitrion || null,
-            attendance: {
+            attendanceDetail: {
                 activeMembers: report.activeMembers || 0,
                 activeChildren: report.activeMembersChildren || 0,
                 inactiveMembers: report.noActiveMembers || 0,
@@ -15,22 +15,25 @@ export class ReportDataMapper {
                 visitorChildren: report.visitorChildren || 0,
                 visitorAdults: report.visitors || 0
             },
-            evangelism: {
+            evangelismDetail: {
                 vigilAttendance: report.vigilAttendance || 0,
                 homesVisited: report.visitedHomes || 0,
                 newChristians: report.newChristians || 0,
                 reconciled: report.reconciled || 0
             },
-            offeringAmount: report.offering || 0,
-            observations: report.comments || '',
+            financeDetail: {
+                offeringAmount: report.offering || 0,
+                observations: report.comments || '',
+            },
             cellId: report.familyGroup ? report.familyGroup.id : null,
         }
     }
 
     static fromApiResponse(data: any): Report {
 
-        const attendance = data.attendance || {};
-        const evangelism = data.evangelism || {};
+        const attendance = data.attendanceDetail || {};
+        const evangelism = data.evangelismDetail || {};
+        const finance = data.financeDetail || {};
         return new Report(
             data.id,
             this.mapFamilyGroup(data.cell),
@@ -46,15 +49,15 @@ export class ReportDataMapper {
             evangelism.newChristians,
             evangelism.reconciled,
             evangelism.vigilAttendance,
-            data.offeringAmount,
-            data.observations,
+            finance.offeringAmount,
+            finance.observations,
             data.createdBy,
             data.creationDate,
             data.createdFrom,
         );
     }
 
-    
+
     static fromApiListResponse(dataList: any[]): Report[] {
         return dataList.map(data => this.fromApiResponse(data));
     }

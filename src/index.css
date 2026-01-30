@@ -1,2 +1,5 @@
-@import "tailwindcss"
+@import "tailwindcss";
 
+.report-detail-line {
+    @apply flex justify-between border-b border-gray-300 py-2;
+}

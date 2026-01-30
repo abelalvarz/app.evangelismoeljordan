@@ -1,6 +1,6 @@
 import { CreateUseCase } from "../Users/application/useCases/CreateUseCase";
 import { LoginUseCase } from "../Users/application/useCases/LoginUseCase";
-import { ApiUserRepository } from "../Users/infrastructure/api/ApiUserRepository";
+import { ApiUserRepository } from "../Users/infrastructure/api/repository/ApiUserRepository";
 import { FirebaseAuthService } from "../Users/infrastructure/firebase/FirebaseAuthService";
 
 const apiUserRepository = new ApiUserRepository();
