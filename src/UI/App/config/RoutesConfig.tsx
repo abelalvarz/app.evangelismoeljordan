@@ -12,7 +12,7 @@ export const PrivateRoutes = [
     { path: "*", element: <Navigate to="/dashboard" replace={true} />, isPrivate: true },
 ]
 export const PublicRoutes = [
-    { path: "/login", element: <LoginPage />, private: false },
+    { path: "/", element: <LoginPage />, private: false },
     { path: "/registro", element: <RegisterPage />, private: false },
-    { path: "*", element: <Navigate to="/login" replace={true} />, isPrivate: false },
+    { path: "*", element: <Navigate to="/" replace={true} />, isPrivate: false },
 ]

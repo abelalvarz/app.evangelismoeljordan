@@ -14,7 +14,7 @@ export const Router = () => {
                         ? (PrivateRoutes.map((item, index) => <Route
                             key={index}
                             path={item.path}
-                            element={auth?.loggedUser.isLogged ? item.element : <Navigate to="/login" replace />} />))
+                            element={auth?.loggedUser.isLogged ? item.element : <Navigate to="/" replace />} />))
                         : (PublicRoutes.map((item, index) => <Route
                             key={index}
                             path={item.path}
