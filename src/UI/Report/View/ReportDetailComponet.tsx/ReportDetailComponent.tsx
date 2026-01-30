@@ -4,9 +4,10 @@ import { AttendanceSection } from './components/AttendanceSection'
 import { EvangelismSection } from './components/EvangelismSection'
 import { OfferingSection } from './components/OfferingSection'
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { ReportService } from "../../../../Core/Adapters/ReportService"
 import { Report } from "../../../../Core/Report/domain/model/Report"
+import { BiArrowBack } from "react-icons/bi"
 
 interface Props {
     data?: Report,
@@ -15,6 +16,7 @@ interface Props {
 
 export const ReportDetailComponent = ({ data }: Props) => {
     const reportService = ReportService;
+    const navigate = useNavigate()
     const { id } = useParams()
 
     const [reportDetail, setReportDetail] = useState<Report>({
@@ -56,7 +58,24 @@ export const ReportDetailComponent = ({ data }: Props) => {
 
     return (
         <div className="flex flex-col w-full h-full gap-2 p-5 box-border br-d ">
-            <div className="flex  flex-col w-full">
+            <div className="flex fixed items-center gap-5 px-5 h-[10%] w-full  top-0 left-0">
+                <button
+                    onClick={() => navigate("/home")}
+                    className="group relative  bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-600 hover:from-indigo-700 hover:via-blue-700 hover:to-indigo-700 rounded-2xl shadow-2xl shadow-indigo-500/40 hover:shadow-indigo-500/60 transition-all duration-300 hover:scale-[1.02] active:scale-95"
+                >
+                    <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                    </div>
+
+                    <div className="relative flex items-center justify-center gap-3">
+                        <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                            <BiArrowBack className="w-5 h-5 text-white" />
+                        </div>
+                    </div>
+                </button>
+                <h1 className="ml-[15%] font-bold">Detalle del reporte</h1>
+            </div>
+            <div className="flex  flex-col w-full mt-[10%] ">
                 <h1 className="text-4xl font-bold max-md:text-2xl max-md:mt-5">{reportDetail?.familyGroup?.name}</h1>
                 <h2>Guatemala, {reportDetail?.meetingDate && format(reportDetail?.meetingDate, "EEEE d 'de' MMMM yyyy", { locale: es })}</h2>
             </div>
