@@ -107,7 +107,6 @@ export const ReportDetail = ({ handleOnchange, report, onSubmit, calculateTotal 
                             <label className='font-semibold' htmlFor="">Asistencia total</label>
                             <InputNumber
                                 value={report.totalAttendance || calculateTotal()}
-                                // onChange={() => )}
                                 inputClassName='w-20 mr-5 text-center' disabled />
                         </div>
                     </div>

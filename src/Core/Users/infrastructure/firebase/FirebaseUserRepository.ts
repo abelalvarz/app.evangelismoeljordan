@@ -1,4 +1,4 @@
-import { User } from "../../domain/model/User";
+import { CreateUserRequest, User } from "../../domain/model/User";
 import { UserRepository } from "../../domain/repository/UserRepository";
 import { collection, doc, getDoc, getDocs, getFirestore, limit, query, setDoc, where } from "firebase/firestore";
 
@@ -14,7 +14,7 @@ export class FirebaseUserRepository implements UserRepository {
         throw new Error("Method not implemented." +email);
     }
 
-    async create(user: User): Promise<boolean> {
+    async create(user: CreateUserRequest): Promise<boolean> {
 
         try {
             console.log(user)

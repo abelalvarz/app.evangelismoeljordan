@@ -41,10 +41,17 @@ export const useLogin = () => {
             const response = await userService.login.execute(user);
 
             loading?.stop()
+            
             if (!response.success || !response.data)
                 return toast?.show('error', 'Error', response.message)
 
-            auth?.login({ email: response.data?.email, isLogged: true, name: response.data?.name, token: response.data?.token, familyGroup: response.data?.familyGroup })
+            auth?.login({
+                email: response.data?.email,
+                isLogged: true,
+                name: response.data?.name,
+                token: response.data?.token,
+                familyGroup: response.data?.familyGroup
+            })
 
             toast?.show('success', 'Exito', 'Inicio de sesión exitoso')
             navigate("/dashboard")

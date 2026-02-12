@@ -11,7 +11,7 @@ export class ApiUserRepository implements UserRepository {
 
     async getUserProfile(token: string): Promise<User | null> {
 
-        const response = await axios.get(`${RoutesConfig.BASE_API_URL}/users/me`, {
+        const response = await axios.get(`${RoutesConfig.BASE_API_URL}/user/me`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
@@ -25,7 +25,8 @@ export class ApiUserRepository implements UserRepository {
             return Promise.resolve(null);
         }
 
-        const user = UserMapper.toDomain(userData);
+        console.log('User Data: ', userData.data)
+        const user = UserMapper.toDomain(userData.data);
         console.log("User object gotten:", user);
 
         return Promise.resolve(user);
@@ -47,14 +48,4 @@ export class ApiUserRepository implements UserRepository {
         }
     }
 
-    // @Deprecated
-    getById(id: string): Promise<User | null> {
-        throw new Error("Method not implemented." + id);
-    }
-
-    // @Deprecated
-    getByRoleAndFamilyGroup(role: string, familyGroup: string): Promise<User | null> {
-        console.log("Method not implemented.", role, familyGroup);
-        return Promise.resolve(null);
-    }
 }

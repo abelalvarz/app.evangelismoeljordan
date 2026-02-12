@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
 
 interface SendReportCardProps {
     isReportPending: boolean;
 }
 
 export const SendReportCard = ({ isReportPending }: SendReportCardProps) => {
+    const navigate = useNavigate()
     return (
         <div className="group relative bg-white rounded-3xl p-8 shadow-xl shadow-blue-900/5 hover:shadow-2xl hover:shadow-blue-900/10 transition-all duration-500 border border-slate-100">
             <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-blue-500/5 to-transparent rounded-bl-full"></div>
@@ -36,7 +38,9 @@ export const SendReportCard = ({ isReportPending }: SendReportCardProps) => {
                 </div>
 
                 {isReportPending && (
-                    <button className="group/btn relative px-8 py-3 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 rounded-xl shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/40 transition-all duration-300 active:scale-95">
+                    <button 
+                    onClick={()=>navigate("/nuevo")}
+                    className="group/btn relative px-8 py-3 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 rounded-xl shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/40 transition-all duration-300 active:scale-95">
                         <span className="text-white font-semibold">Enviar reporte</span>
                     </button>
                 )}

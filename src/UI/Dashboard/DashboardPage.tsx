@@ -15,17 +15,14 @@ export const DashboardPage = () => {
     useEffect(() => {
         const fetchCurrentReport = async () => {
             const response = await service.validateIsCurrentReportSent.execute()
-            console.log("Report fetch response:", response);
             if (response.success)
                 setIsReportPending(!response.data)
 
             const sentReportsResponse = await service.getAll.execute()
-            console.log("Sent Reports Response:", sentReportsResponse);
             if (sentReportsResponse.success) {
                 setSentReports(sentReportsResponse.data)
             }
         }
-        console.log("Logged User in Dashboard:", loggedUser);
         fetchCurrentReport()
     }, [])
 

@@ -16,10 +16,6 @@ export class CreateUseCase {
         if (!request.familyGroup)
             return new Response(false, "No encontro el grupo familiar", null)
 
-        const alreadyExistRole = await this.repository.getByRoleAndFamilyGroup(request.role, request.familyGroup?.name);
-        if (alreadyExistRole)
-            return new Response(false, "El grupo ya tiene el cargo seleccionado asignado", null)
-
         const createdCredential = await this.authService.signUp({
             email: request.email, 
             password: request.password,
@@ -29,15 +25,13 @@ export class CreateUseCase {
         if (!createdCredential?.id)
             return new Response(false, "El email ingresado ya existe", null)
 
-        const roles = []
-        roles.push(request.role)
         
         const user = new CreateUserRequest(
             createdCredential.id,
             request.name,
             request.email,
             request.familyGroup,
-            roles,
+            request.role,
             'ACTIVE',
             request.password
         )

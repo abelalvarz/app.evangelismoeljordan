@@ -22,8 +22,8 @@ export const useRegister = () => {
     const familyGroupService = FamilyGroupService;
     const userService = UserService;
     const toast = useToast()
-    const navigate = useNavigate()
     const loading = useLoading()
+    const navigate = useNavigate()
     const [familyGroups, setFamilyGroups] = useState<FamilyGroup[]>([]);
     const [user, setUser] = useState<UserRequest>(initialState)
 

@@ -9,14 +9,15 @@ export class ApiReportRepository implements ReportRepository {
     
     
     async create(report: Report): Promise<boolean> {
+        console.log(report)
         const reportData = ReportDataMapper.toApiRequest(report);
-        const response = await axios.post(`${RoutesConfig.BASE_API_URL}/reports`, reportData, this.getHeaders());
+        const response = await axios.post(`${RoutesConfig.BASE_API_URL}/report`, reportData, this.getHeaders());
         console.log("Response Create Report:", response);
         return Promise.resolve(true);
     }
 
     async getOneById(id: string): Promise<Report | null> {
-        const url = `${RoutesConfig.BASE_API_URL}/reports/${id}`;
+        const url = `${RoutesConfig.BASE_API_URL}/report/${id}`;
         const response = await axios.get(url, this.getHeaders());
         return Promise.resolve(ReportDataMapper.fromApiResponse(response.data.data));
     }
@@ -28,15 +29,16 @@ export class ApiReportRepository implements ReportRepository {
         const startDateParam = start.toISOString().split('T')[0];
         const endDateParam = endDate.toISOString().split('T')[0];
 
-        const response = await axios.get(`${RoutesConfig.BASE_API_URL}/reports/my-cell?startDate=${startDateParam}&endDate=${endDateParam}`, 
+        const response = await axios.get(`${RoutesConfig.BASE_API_URL}/report/my-cell?startDate=${startDateParam}&endDate=${endDateParam}`, 
             this.getHeaders());
         
+        console.log('response: ', response)
         return Promise.resolve(ReportDataMapper.fromApiListResponse(response.data.data));
     }
     
     async getAllByFamilyGroupUser(start: Date, endDate: Date): Promise<Report[]> {
         console.log("Fetching all reports from logged User:");
-        const response = await axios.get(`${RoutesConfig.BASE_API_URL}/reports/my-cell?startDate=${start.toISOString().split('T')[0]}&endDate=${endDate.toISOString().split('T')[0]}`, this.getHeaders());
+        const response = await axios.get(`${RoutesConfig.BASE_API_URL}/report/my-cell?startDate=${start.toISOString().split('T')[0]}&endDate=${endDate.toISOString().split('T')[0]}`, this.getHeaders());
     
         return Promise.resolve(ReportDataMapper.fromApiListResponse(response.data.data));
     }

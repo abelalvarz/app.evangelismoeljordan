@@ -1,38 +1,47 @@
-export type UserStatus = 'ACTIVE' | 'INACTIVE'
+export type UserStatus = "ACTIVE" | "INACTIVE";
 
 type FamilyGroup = {
-    id: string
-    name: string,
-    color: string,
-    teacher: string,
-    anfitrion: string,
-    leaders: string[],
-    meetingDay: string,
-    meetingTime: string
-}
+  id: string;
+  name: string;
+  color: string | undefined;
+  teacher: string | undefined;
+  anfitrion: string;
+  leaders: string[] | undefined;
+  meetingDay: string | undefined;
+  meetingTime: string | undefined;
+};
 
 export class User {
-    constructor(
-        readonly id: string | null,
-        readonly name: string,
-        readonly email: string,
-        readonly familyGroup: FamilyGroup,
-        readonly role: string[],
-        readonly status: UserStatus
-    ){}
+  id: string | null;
+  name: string;
+  email: string;
+  familyGroup: FamilyGroup;
+  role: string[];
+  status: UserStatus;
+  constructor(
+    id: string | null,
+    name: string,
+    email: string,
+    familyGroup: FamilyGroup,
+    role: string[],
+    status: UserStatus,
+  ) {
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.familyGroup = familyGroup;
+    this.role = role;
+    this.status = status;
+  }
 }
-export class CreateUserRequest extends User {
-    password: string;
-    constructor(
-        id: string | null,
-        name: string,
-        email: string,
-        familyGroup: FamilyGroup,
-        role: string[],
-        status: UserStatus,
-        password: string
-    ) {
-        super(id, name, email, familyGroup, role, status);
-        this.password = password;
-    }   
+export class CreateUserRequest {
+  constructor(
+    readonly id: string | null,
+    readonly name: string,
+    readonly email: string,
+    readonly familyGroup: FamilyGroup,
+    readonly role: string,
+    readonly status: UserStatus,
+    readonly password: string,
+  ) {}
 }

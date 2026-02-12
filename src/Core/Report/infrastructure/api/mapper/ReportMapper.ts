@@ -7,7 +7,7 @@ export class ReportDataMapper {
         return {
             meetingDate: report.meetingDate,
             hostName: report.familyGroup?.anfitrion || null,
-            attendanceDetail: {
+            attendance: {
                 activeMembers: report.activeMembers || 0,
                 activeChildren: report.activeMembersChildren || 0,
                 inactiveMembers: report.noActiveMembers || 0,
@@ -15,13 +15,13 @@ export class ReportDataMapper {
                 visitorChildren: report.visitorChildren || 0,
                 visitorAdults: report.visitors || 0
             },
-            evangelismDetail: {
+            evangelism: {
                 vigilAttendance: report.vigilAttendance || 0,
-                homesVisited: report.visitedHomes || 0,
+                visitedHomes: report.visitedHomes || 0,
                 newChristians: report.newChristians || 0,
                 reconciled: report.reconciled || 0
             },
-            financeDetail: {
+            finance: {
                 offeringAmount: report.offering || 0,
                 observations: report.comments || '',
             },
@@ -31,9 +31,9 @@ export class ReportDataMapper {
 
     static fromApiResponse(data: any): Report {
 
-        const attendance = data.attendanceDetail || {};
-        const evangelism = data.evangelismDetail || {};
-        const finance = data.financeDetail || {};
+        const attendance = data.attendance || {};
+        const evangelism = data.evangelism || {};
+        const finance = data.finance || {};
         return new Report(
             data.id,
             this.mapFamilyGroup(data.cell),
@@ -45,10 +45,10 @@ export class ReportDataMapper {
             attendance.visitorChildren,
             attendance.visitorAdults,
             attendance.totalAttendance,
-            evangelism.homesVisited,
             evangelism.newChristians,
             evangelism.reconciled,
             evangelism.vigilAttendance,
+            evangelism.visitedHomes,
             finance.offeringAmount,
             finance.observations,
             data.createdBy,
@@ -59,6 +59,7 @@ export class ReportDataMapper {
 
 
     static fromApiListResponse(dataList: any[]): Report[] {
+        console.log('responseList: ',dataList)
         return dataList.map(data => this.fromApiResponse(data));
     }
     private static mapFamilyGroup(data: unknown): FamilyGroup {
