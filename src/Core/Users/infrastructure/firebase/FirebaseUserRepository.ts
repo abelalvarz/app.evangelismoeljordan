@@ -14,7 +14,7 @@ export class FirebaseUserRepository implements UserRepository {
         throw new Error("Method not implemented." +email);
     }
 
-    async create(user: CreateUserRequest): Promise<boolean> {
+    async create(user: CreateUserRequest): Promise<{success: boolean, message: string}> {
 
         try {
             console.log(user)
@@ -37,10 +37,16 @@ export class FirebaseUserRepository implements UserRepository {
                     meetingDay: familyGroup.meetingDay
                 }, role: user.role, status: user.status
             })
-            return Promise.resolve(true)
+            return {
+                success: true,
+                message: 'Usuario creado exitosamente'
+            }
         } catch (error) {
             console.log(error)
-            return false
+            return {
+                success: false,
+                message: 'Hubo un error al crear el usuario'
+            }
         }
     }
 

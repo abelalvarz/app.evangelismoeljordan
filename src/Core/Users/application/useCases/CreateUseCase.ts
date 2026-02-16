@@ -38,8 +38,8 @@ export class CreateUseCase {
 
         const createdUser = await this.repository.create(user);
 
-        if (!createdUser)
-            return new Response(false, "El usuario no se pudo crear", null)
+        if (!createdUser.success)
+            return new Response(false, createdUser.message, null)
 
         return new Response(true, "Usuario Creado Exitosamente", null)
     }
